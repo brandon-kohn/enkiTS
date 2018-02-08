@@ -16,7 +16,15 @@
 //    misrepresented as being the original software.
 // 3. This notice may not be removed or altered from any source distribution.
 
-#include <assert.h>
+
+//! Workaround for compile on visual studio 2017.
+#ifdef _MSC_VER
+	#if _MSC_VER > 1900
+		#include <intrin.h>
+	#endif
+#endif
+
+#include <cassert>
 
 #include "TaskScheduler.h"
 #include "LockLessMultiReadPipe.h"

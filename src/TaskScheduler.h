@@ -21,7 +21,7 @@
 #include <atomic>
 #include <thread>
 #include <condition_variable>
-#include <stdint.h>
+#include <cstdint>
 #include <functional>
 
 namespace enki
