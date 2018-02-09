@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project( enkiTS )
 
-option( ENKITS_BUILD_C_INTERFACE	"Build C interface" ON )
-option( ENKITS_BUILD_EXAMPLES		"Build example applications" ON )
+option( ENKITS_BUILD_C_INTERFACE	"Build C interface" OFF )
+option( ENKITS_BUILD_EXAMPLES		"Build example applications" OFF )
 
 
 
@@ -23,6 +23,11 @@ if( ENKITS_BUILD_C_INTERFACE )
 endif()
 	 
 add_library( enkiTS STATIC ${ENKITS_SRC} )
+target_include_directories(enkiTS INTERFACE
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/src>
+    $<INSTALL_INTERFACE:include/enkiTS>
+)
+
 if(UNIX)
 	set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 	find_package(Threads REQUIRED)
